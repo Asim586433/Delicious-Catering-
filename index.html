@@ -30,6 +30,7 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--light-color);
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
@@ -451,6 +452,54 @@
             gap: 2rem;
         }
         
+        .menu-grid-item {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .menu-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .menu-grid-item:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-details {
+            padding: 1.5rem;
+        }
+        
+        .menu-item-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-item-details p {
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item-details .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
         /* Services Page */
         .services-grid {
             display: grid;
@@ -599,6 +648,26 @@
             text-align: center;
         }
         
+        /* Page Styles */
+        .page {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .page-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+        }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             h1 {
@@ -637,6 +706,7 @@
                 transition: var(--transition);
                 box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
                 z-index: 999;
+                padding: 2rem;
             }
             
             nav.active {
@@ -645,7 +715,6 @@
             
             nav ul {
                 flex-direction: column;
-                padding: 2rem;
             }
             
             nav ul li {
@@ -675,6 +744,10 @@
             .btn {
                 padding: 0.7rem 1.5rem;
             }
+            
+            .page-hero {
+                height: 40vh;
+            }
         }
     </style>
 </head>
@@ -682,141 +755,396 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">Delicious <span>Catering</span></a>
+            <a href="#" class="logo" data-page="home">Delicious <span>Catering</span></a>
             <div class="nav-toggle" id="navToggle">
                 <i class="fas fa-bars"></i>
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="menu.html">Menu</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#" data-page="menu">Menu</a></li>
+                    <li><a href="#" data-page="services">Services</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content (changes based on page) -->
-    <main>
-        <!-- Homepage Content -->
-        <div id="home-page">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>Delicious Catering for Every Occasion</h1>
-                    <p>Experience the finest culinary creations for your special events, corporate functions, and private celebrations.</p>
-                    <a href="menu.html" class="btn">Explore Our Menu</a>
-                </div>
-            </section>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Delicious Catering for Every Occasion</h1>
+                <p>Experience the finest culinary creations for your special events, corporate functions, and private celebrations.</p>
+                <a href="#" class="btn" data-page="menu">Explore Our Menu</a>
+            </div>
+        </section>
 
-            <!-- About Section -->
-            <section class="about">
-                <div class="container">
-                    <div class="about-content">
-                        <div class="about-text">
-                            <h2>About Our Catering</h2>
-                            <p>Delicious Catering specializes in creating unforgettable culinary experiences for weddings, corporate events, and private gatherings. With over 10 years of experience, our team of expert chefs crafts menus that delight the senses and leave lasting impressions.</p>
-                            <p>We use only the freshest, locally-sourced ingredients to create dishes that are as beautiful as they are delicious. Our commitment to quality, creativity, and exceptional service sets us apart in the catering industry.</p>
-                            <a href="services.html" class="btn btn-outline">Our Services</a>
-                        </div>
-                        <div class="about-image">
-                            <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chef preparing food" loading="lazy">
-                        </div>
+        <!-- About Section -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About Our Catering</h2>
+                        <p>Delicious Catering specializes in creating unforgettable culinary experiences for weddings, corporate events, and private gatherings. With over 10 years of experience, our team of expert chefs crafts menus that delight the senses and leave lasting impressions.</p>
+                        <p>We use only the freshest, locally-sourced ingredients to create dishes that are as beautiful as they are delicious. Our commitment to quality, creativity, and exceptional service sets us apart in the catering industry.</p>
+                        <a href="#" class="btn btn-outline" data-page="services">Our Services</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chef preparing food" loading="lazy">
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Featured Menu Section -->
-            <section class="featured-menu">
-                <div class="container">
-                    <div class="text-center">
-                        <h2>Featured Menu Items</h2>
-                        <p>Discover some of our most popular dishes that keep our clients coming back for more.</p>
+        <!-- Featured Menu Section -->
+        <section class="featured-menu">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Featured Menu Items</h2>
+                    <p>Discover some of our most popular dishes that keep our clients coming back for more.</p>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1124&q=80" alt="Gourmet appetizers" loading="lazy">
+                        </div>
+                        <div class="menu-item-content">
+                            <h3>Gourmet Appetizers</h3>
+                            <p>A selection of our finest bite-sized delights, perfect for starting any event.</p>
+                            <p class="price">From $12 per person</p>
+                            <a href="#" class="btn btn-outline" data-page="menu">Learn More</a>
+                        </div>
                     </div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <div class="menu-item-img">
-                                <img src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1124&q=80" alt="Gourmet appetizers" loading="lazy">
-                            </div>
-                            <div class="menu-item-content">
-                                <h3>Gourmet Appetizers</h3>
-                                <p>A selection of our finest bite-sized delights, perfect for starting any event.</p>
-                                <p class="price">From $12 per person</p>
-                                <a href="menu.html#appetizers" class="btn btn-outline">Learn More</a>
-                            </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Main course dish" loading="lazy">
                         </div>
-                        <div class="menu-item">
-                            <div class="menu-item-img">
-                                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Main course dish" loading="lazy">
-                            </div>
-                            <div class="menu-item-content">
-                                <h3>Signature Main Courses</h3>
-                                <p>Our chef's specialty dishes that are sure to impress your guests.</p>
-                                <p class="price">From $25 per person</p>
-                                <a href="menu.html#main-courses" class="btn btn-outline">Learn More</a>
-                            </div>
+                        <div class="menu-item-content">
+                            <h3>Signature Main Courses</h3>
+                            <p>Our chef's specialty dishes that are sure to impress your guests.</p>
+                            <p class="price">From $25 per person</p>
+                            <a href="#" class="btn btn-outline" data-page="menu">Learn More</a>
                         </div>
-                        <div class="menu-item">
-                            <div class="menu-item-img">
-                                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1124&q=80" alt="Decadent desserts" loading="lazy">
-                            </div>
-                            <div class="menu-item-content">
-                                <h3>Decadent Desserts</h3>
-                                <p>Sweet endings to your event with our exquisite dessert selection.</p>
-                                <p class="price">From $10 per person</p>
-                                <a href="menu.html#desserts" class="btn btn-outline">Learn More</a>
-                            </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1124&q=80" alt="Decadent desserts" loading="lazy">
+                        </div>
+                        <div class="menu-item-content">
+                            <h3>Decadent Desserts</h3>
+                            <p>Sweet endings to your event with our exquisite dessert selection.</p>
+                            <p class="price">From $10 per person</p>
+                            <a href="#" class="btn btn-outline" data-page="menu">Learn More</a>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Testimonials Section -->
-            <section class="testimonials">
-                <div class="container">
-                    <div class="text-center">
-                        <h2>What Our Clients Say</h2>
-                        <p>Don't just take our word for it - hear from some of our satisfied clients.</p>
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="text-center">
+                    <h2>What Our Clients Say</h2>
+                    <p>Don't just take our word for it - hear from some of our satisfied clients.</p>
+                </div>
+                <div class="testimonial-cards">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Delicious Catering provided an exceptional experience for our corporate event. The food was exquisite, and the service was impeccable. Our guests are still talking about it weeks later!</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson" loading="lazy">
+                            <div class="author-details">
+                                <h4>Sarah Johnson</h4>
+                                <p>Marketing Director, TechCorp</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="testimonial-cards">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">Delicious Catering provided an exceptional experience for our corporate event. The food was exquisite, and the service was impeccable. Our guests are still talking about it weeks later!</p>
-                            <div class="testimonial-author">
-                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson" loading="lazy">
-                                <div class="author-details">
-                                    <h4>Sarah Johnson</h4>
-                                    <p>Marketing Director, TechCorp</p>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Our wedding day was perfect, thanks in large part to Delicious Catering. The menu was tailored to our preferences, and the presentation was stunning. Highly recommend!</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" loading="lazy">
+                            <div class="author-details">
+                                <h4>Michael Chen</h4>
+                                <p>Wedding Client</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">I've used Delicious Catering for three company events now, and they consistently deliver exceptional food and service. Their attention to detail sets them apart from other caterers.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emily Rodriguez" loading="lazy">
+                            <div class="author-details">
+                                <h4>Emily Rodriguez</h4>
+                                <p>Event Planner, Star Events</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menu-page" class="page">
+        <section class="page-hero">
+            <div class="hero-content">
+                <h1>Our Menu</h1>
+                <p>Discover our wide selection of culinary delights for your next event</p>
+            </div>
+        </section>
+
+        <section class="menu">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Catering Menu</h2>
+                    <p>Browse our selection of appetizers, main courses, and desserts</p>
+                </div>
+
+                <div class="menu-categories">
+                    <button class="category-btn active" data-category="all">All Items</button>
+                    <button class="category-btn" data-category="appetizers">Appetizers</button>
+                    <button class="category-btn" data-category="main-courses">Main Courses</button>
+                    <button class="category-btn" data-category="desserts">Desserts</button>
+                </div>
+
+                <div class="menu-grid">
+                    <!-- Appetizers -->
+                    <div class="menu-grid-item" data-category="appetizers">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1611270629569-8b357cb3082c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Vegetarian Spring Rolls" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Vegetarian Spring Rolls</h3>
+                            <p>Crispy and flavorful with a sweet dipping sauce</p>
+                            <p class="price">$12</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-grid-item" data-category="appetizers">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1626700051175-681c3fc5e87a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Caprese Skewers" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Caprese Skewers</h3>
+                            <p>Fresh mozzarella, cherry tomatoes, and basil with balsamic glaze</p>
+                            <p class="price">$14</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-grid-item" data-category="appetizers">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1617096083745-a8433b87e9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Stuffed Mushrooms" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Stuffed Mushrooms</h3>
+                            <p>Mushroom caps filled with herbed cream cheese and breadcrumbs</p>
+                            <p class="price">$16</p>
+                        </div>
+                    </div>
+
+                    <!-- Main Courses -->
+                    <div class="menu-grid-item" data-category="main-courses">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Herb-Crusted Salmon" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Herb-Crusted Salmon</h3>
+                            <p>Atlantic salmon with a crispy herb crust, served with seasonal vegetables</p>
+                            <p class="price">$28</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-grid-item" data-category="main-courses">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1607923432721-460a735ef5f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Beef Tenderloin" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Beef Tenderloin</h3>
+                            <p>Premium beef tenderloin with red wine reduction and garlic mashed potatoes</p>
+                            <p class="price">$32</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-grid-item" data-category="main-courses">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1555939590-5aae4f23f2c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Vegetable Paella" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Vegetable Paella</h3>
+                            <p>Spanish-style rice dish with saffron, seasonal vegetables, and herbs</p>
+                            <p class="price">$22</p>
+                        </div>
+                    </div>
+
+                    <!-- Desserts -->
+                    <div class="menu-grid-item" data-category="desserts">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1623334044303-241021148842?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chocolate Mousse" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Chocolate Mousse</h3>
+                            <p>Rich dark chocolate mousse with fresh berries</p>
+                            <p class="price">$10</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-grid-item" data-category="desserts">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=763&q=80" alt="Crème Brûlée" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Crème Brûlée</h3>
+                            <p>Classic vanilla custard with caramelized sugar crust</p>
+                            <p class="price">$12</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-grid-item" data-category="desserts">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1626700051175-681c3fc5e87a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Fruit Tartlets" loading="lazy">
+                        </div>
+                        <div class="menu-item-details">
+                            <h3>Fruit Tartlets</h3>
+                            <p>Buttery shortcrust pastry filled with vanilla custard and fresh seasonal fruits</p>
+                            <p class="price">$14</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services-page" class="page">
+        <section class="page-hero">
+            <div class="hero-content">
+                <h1>Our Services</h1>
+                <p>Comprehensive catering solutions for all your events</p>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Catering Services</h2>
+                    <p>We offer a variety of catering options to suit your specific needs</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Wedding Catering" loading="lazy">
+                        </div>
+                        <div class="service-content">
+                            <h3>Wedding Catering</h3>
+                            <p>Make your special day unforgettable with our exquisite wedding catering services. We work closely with you to create a customized menu that reflects your tastes and preferences.</p>
+                            <p class="price">Starting at $45 per person</p>
+                            <a href="#" class="btn btn-outline" data-page="contact">Inquire About This Service</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Corporate Catering" loading="lazy">
+                        </div>
+                        <div class="service-content">
+                            <h3>Corporate Catering</h3>
+                            <p>Impress clients and employees with our professional corporate catering services. From board meetings to company parties, we deliver delicious food and flawless service.</p>
+                            <p class="price">Starting at $25 per person</p>
+                            <a href="#" class="btn btn-outline" data-page="contact">Inquire About This Service</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Event Catering" loading="lazy">
+                        </div>
+                        <div class="service-content">
+                            <h3>Event Catering</h3>
+                            <p>From intimate gatherings to large celebrations, our event catering services ensure your guests enjoy exceptional food and impeccable service.</p>
+                            <p class="price">Starting at $30 per person</p>
+                            <a href="#" class="btn btn-outline" data-page="contact">Inquire About This Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page">
+        <section class="page-hero">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>Get in touch to discuss your catering needs</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <p>We'd love to hear from you! Reach out to us with any questions or to request a quote for your event.</p>
+                        
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <strong>Address</strong>
+                                    <p>123 Culinary Avenue, Foodville, CA 90210</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">Our wedding day was perfect, thanks in large part to Delicious Catering. The menu was tailored to our preferences, and the presentation was stunning. Highly recommend!</p>
-                            <div class="testimonial-author">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" loading="lazy">
-                                <div class="author-details">
-                                    <h4>Michael Chen</h4>
-                                    <p>Wedding Client</p>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <p>(555) 123-4567</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">I've used Delicious Catering for three company events now, and they consistently deliver exceptional food and service. Their attention to detail sets them apart from other caterers.</p>
-                            <div class="testimonial-author">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emily Rodriguez" loading="lazy">
-                                <div class="author-details">
-                                    <h4>Emily Rodriguez</h4>
-                                    <p>Event Planner, Star Events</p>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>info@deliciouscatering.com</p>
                                 </div>
+                            </li>
+                        </ul>
+
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105874.69866576896!2d-118.43367946113281!3d34.08254800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bc04d6d147ab%3A0xd6c7c379fd081ed1!2sBeverly%20Hills%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1686754956136!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2>Send Us a Message</h2>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
                             </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" class="form-control" placeholder="Tell us about your event needs" required></textarea>
+                            </div>
+                            <div class="form-submit">
+                                <button type="submit" class="btn">Send Message</button>
+                            </div>
+                        </form>
+                        <div id="successMessage" class="success-message">
+                            Thank you for contacting us! We'll get back to you soon.
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-
-        <!-- Other pages would be loaded here dynamically in a real implementation -->
-    </main>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -841,10 +1169,10 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="menu">Menu</a></li>
+                        <li><a href="#" data-page="services">Services</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
@@ -852,7 +1180,7 @@
                 <div class="footer-column">
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter for updates on seasonal menus, special offers, and catering tips.</p>
-                    <form>
+                    <form id="newsletterForm">
                         <div class="form-group">
                             <input type="email" class="form-control" placeholder="Your Email Address" required>
                         </div>
@@ -867,71 +1195,109 @@
     </footer>
 
     <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.getElementById('navToggle');
-        const nav = document.getElementById('nav');
-        
-        navToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-        
-        // Close mobile nav when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!nav.contains(e.target) && !navToggle.contains(e.target) && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-            }
-        });
-        
-        // Simple form validation for contact form
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                
-                if (name && email && message) {
-                    // In a real implementation, you would send the form data to a server here
-                    document.getElementById('successMessage').style.display = 'block';
-                    contactForm.reset();
-                    
-                    // Hide success message after 5 seconds
-                    setTimeout(() => {
-                        document.getElementById('successMessage').style.display = 'none';
-                    }, 5000);
+        // Navigation and Page Switching
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation Toggle
+            const navToggle = document.getElementById('navToggle');
+            const nav = document.getElementById('nav');
+            
+            navToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+            
+            // Close mobile nav when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !navToggle.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
                 }
             });
-        }
-        
-        // Menu category filtering
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const menuItems = document.querySelectorAll('.menu-grid-item');
-        
-        if (categoryButtons.length > 0) {
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Page Navigation
+            const pageLinks = document.querySelectorAll('[data-page]');
+            const pages = document.querySelectorAll('.page');
+            
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
                     
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    
-                    const category = button.getAttribute('data-category');
-                    
-                    // Filter menu items
-                    menuItems.forEach(item => {
-                        if (category === 'all' || item.getAttribute('data-category') === category) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
+                    // Hide all pages
+                    pages.forEach(page => {
+                        page.classList.remove('active');
                     });
+                    
+                    // Show target page
+                    document.getElementById(`${targetPage}-page`).classList.add('active');
+                    
+                    // Close mobile nav if open
+                    nav.classList.remove('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
                 });
             });
-        }
+            
+            // Menu category filtering
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const menuItems = document.querySelectorAll('.menu-grid-item');
+            
+            if (categoryButtons.length > 0) {
+                categoryButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Remove active class from all buttons
+                        categoryButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        button.classList.add('active');
+                        
+                        const category = button.getAttribute('data-category');
+                        
+                        // Filter menu items
+                        menuItems.forEach(item => {
+                            if (category === 'all' || item.getAttribute('data-category') === category) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            }
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic validation
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+                    
+                    if (name && email && message) {
+                        // Show success message
+                        document.getElementById('successMessage').style.display = 'block';
+                        contactForm.reset();
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            document.getElementById('successMessage').style.display = 'none';
+                        }, 5000);
+                    }
+                });
+            }
+            
+            // Newsletter form submission
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                });
+            }
+        });
     </script>
 </body>
 </html>
